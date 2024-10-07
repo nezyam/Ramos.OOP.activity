@@ -3,7 +3,9 @@
 
 
 class Vehicle{
- // No additional properties or methods 
+ // No additional
 
 }
+
+echo "Vehicle 2";
 ?>

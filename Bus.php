@@ -1,31 +1,32 @@
 <?php
 
-//4. Create a Bus class that inherits from the Vehicle class in Problem #1.
-// Give the capacity argument of Bus->seating_capacity() a default value of 50.
+include 'Vehicle.php'; 
 
-include "./Vehicle.php"; //import from other file
+//3. Create a child class Bus that will inherit all of the variables and methods of the Vehicle class in Problem #1.
 
-class Bus Extends Vehicle{
+class Bus Extends Vehicle{ 
+
+ // 4. Create a Bus class with a default seating capacity of 50.
     public $seating_capacity;
+    public $total_fare;
+    public function __construct($name, $speed, $mileage,$seating_capacity=50){
+        parent::__construct($name, $speed, $mileage);
+        $this->seating_capacity = $seating_capacity;
+    }
+    
+ // 6. Override the fare() method to include a 10% maintenance charge for buses.
+    public function busfare() {
+    // Calculate the total fare based on seating capacity
+        $base_fare = $this->seating_capacity * 100;
+    // Add 10% maintenance charge
+        $maintenance_charge = $base_fare * 0.1;
+    // Final fare calculation
+        $total_fare = $base_fare + $maintenance_charge;
 
-    public function __construct($name, $speed, $mileage,int $seating_capacity=50) {
-        $this->name = $name;
-        $this->speed = $speed;
-        $this->mileage = $mileage;
-        $this->seating_capacity= $seating_capacity;
+    return $total_fare;
     }
-    public function setseating_capacity(int $seating_capacity=50){
-        $this->seating_capacity=$seating_capacity;
-    }
-    public function getseating_capacity()
-    {
-        return $this->seating_capacity;
-    }
-    public function displayInfo() {
-        echo "Vehicle: $this->name, Speed: $this->speed, Mileage: $this->mileage<br>";
-    }
-}  
+}
 
-    $VLiner= new Bus("liner","20","100",);
-    echo "Seating Capacity is=".$VLiner->getseating_capacity();
-?>
+$bus = new Bus("City Bus", 80, 15000,); // Seating capacity is 50
+
+echo "Total Fare for Bus: " . $bus->busfare(); // Should output 5500
