@@ -2,7 +2,7 @@
 //2. Create a Vehicle class without any variables and methods
 
 
-class Vehicle{
+abstract class Vehicle{
  // No additional
 
 }
